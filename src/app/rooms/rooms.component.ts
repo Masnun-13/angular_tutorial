@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
@@ -8,6 +8,8 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.scss',]
 })
 export class RoomsComponent implements OnInit {
+
+  @Input() listedrooms: RoomList[] = []
 
   hotelName = "Hilton Hotel";
 
