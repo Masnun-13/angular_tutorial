@@ -37,6 +37,7 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
   toggle(){
     this.hideRooms = !this.hideRooms
     this.title = "Rooms List"
+    localStorage.setItem("name", "Hilton Hotel");
   }
 
   selectedRoom!: RoomList
