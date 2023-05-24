@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RoomList } from '../rooms';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -45,5 +46,8 @@ export class RoomsService {
     return this.roomList
   }
 
-  constructor() {}
+  constructor() {
+    console.log("Rooms service initialized...")
+    console.log(environment.apiEndPoint)
+  }
 }
