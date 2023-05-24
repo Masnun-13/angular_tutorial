@@ -3,6 +3,8 @@ import { OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { AppConfig } from '../AppConfig/appconfig.interface';
+import { APP_CONFIG } from '../AppConfig/appconfig.service';
 
 @Component({
   selector: 'hinv-rooms',
@@ -63,7 +65,8 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
 
   }
 
-  roomService = new RoomsService()
+
+  roomService = new RoomsService(APP_CONFIG)
 
   ngOnInit(): void {
 
