@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { APP_CONFIG, APP_CONFIG_SERVICE } from './AppConfig/appconfig.service';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
