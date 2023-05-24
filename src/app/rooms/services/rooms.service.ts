@@ -48,7 +48,7 @@ export class RoomsService {
   ];
 
   getrooms(){
-    return this.http.get('/api/rooms')
+    return this.http.get<RoomList[]>('/api/rooms')
   }
 
   constructor(@Inject(APP_CONFIG_SERVICE) private config : AppConfig,
