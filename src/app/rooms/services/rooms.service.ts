@@ -10,7 +10,7 @@ import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 export class RoomsService {
   roomList: RoomList[] = [
     {
-      roomNumber: 1,
+      roomNumber: "1",
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 500,
@@ -21,7 +21,7 @@ export class RoomsService {
       rating: 4.5,
     },
     {
-      roomNumber: 2,
+      roomNumber: "2",
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 1000,
@@ -32,7 +32,7 @@ export class RoomsService {
       rating: 3.45654,
     },
     {
-      roomNumber: 3,
+      roomNumber: "3",
       roomType: 'Private Suite',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 15000,
