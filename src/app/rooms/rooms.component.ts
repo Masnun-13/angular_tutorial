@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, Output, ViewChild, ViewChildren, QueryList, DoCheck, AfterViewInit } from '@angular/core';
+import { ChangeDetectionStrategy, SkipSelf, Component, Input, Output, ViewChild, ViewChildren, QueryList, DoCheck, AfterViewInit } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { AppConfig } from '../AppConfig/appconfig.interface';
 import { APP_CONFIG } from '../AppConfig/appconfig.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'hinv-rooms',
@@ -62,16 +63,16 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
     this.roomList.push(room)
   }
 
-  constructor(){
+  constructor(@SkipSelf() private roomService : RoomsService){
 
   }
 
 
-  roomService = new RoomsService(APP_CONFIG)
+
 
   ngOnInit(): void {
 
-    this.roomList = this.roomService.getrooms()
+    console.log(this.roomService.getrooms())
   }
 
   ngDoCheck(): void {

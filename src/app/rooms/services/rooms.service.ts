@@ -3,6 +3,9 @@ import { RoomList } from '../rooms';
 import { environment } from 'src/environments/environment';
 import { APP_CONFIG_SERVICE } from 'src/app/AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -45,10 +48,11 @@ export class RoomsService {
   ];
 
   getrooms(){
-    return this.roomList
+    return this.http.get('/api/rooms')
   }
 
-  constructor(@Inject(APP_CONFIG_SERVICE) private config : AppConfig) {
+  constructor(@Inject(APP_CONFIG_SERVICE) private config : AppConfig,
+  private http : HttpClient) {
     console.log("Rooms service initialized...");
     console.log(config.apiEndPoint)
   }
