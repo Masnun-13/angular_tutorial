@@ -5,7 +5,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { AppConfig } from '../AppConfig/appconfig.interface';
 import { APP_CONFIG } from '../AppConfig/appconfig.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
 
   numberOfRooms = 10;
 
-  hideRooms = false
+  hideRooms = true
 
   rooms : Room = {
     totalRooms: 20,
@@ -92,12 +92,17 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
 
   }
 
+  deleteroom(){
+    this.roomService.deleteroom('3').subscribe(data=>
+      this.roomList=data)
+  }
+
   constructor(@SkipSelf() private roomService : RoomsService){
 
   }
 
 
-
+  totalBytes=0
 
   ngOnInit(): void {
     this.roomService.getrooms().subscribe(rooms => {
@@ -109,6 +114,31 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
       complete: () => console.log("complete"),
       error : (err) => console.log(err)
 
+    })
+    this.roomService.getPhotos().subscribe(event =>{
+      console.log(event)
+      switch(event.type){
+        case HttpEventType.Sent:
+          {
+            console.log("Request has been made");
+            break;
+          }
+        case HttpEventType.ResponseHeader:
+          {
+            console.log("Request success");
+            break;
+          }
+        case HttpEventType.DownloadProgress:
+          {
+            this.totalBytes+=event.loaded;
+            break;
+          }
+        case HttpEventType.Response:
+          {
+            console.log(event.body);
+            break;
+          }
+      }
     })
   }
 

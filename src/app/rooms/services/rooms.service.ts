@@ -3,7 +3,7 @@ import { RoomList } from '../rooms';
 import { environment } from 'src/environments/environment';
 import { APP_CONFIG_SERVICE } from 'src/app/AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -65,5 +65,16 @@ export class RoomsService {
   editroom(room: RoomList){
     return this.http.put<RoomList[]>(`/api/rooms/${room.roomNumber}`, room)
 
+  }
+
+  deleteroom(id: string){
+    return this.http.delete<RoomList[]>(`/api/rooms/${id}`)
+  }
+
+  getPhotos(){
+    const request = new HttpRequest('GET', `https://jsonplaceholder.typicode.com/photos`, {
+      reportProgres:true
+    })
+    return this.http.request(request)
   }
 }
