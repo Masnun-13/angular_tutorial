@@ -3,9 +3,9 @@ import { RoomList } from '../rooms';
 import { environment } from 'src/environments/environment';
 import { APP_CONFIG_SERVICE } from 'src/app/AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
-import { HttpClient, HttpRequest } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { Observable, Subscription, throwError } from 'rxjs';
+import { catchError, retry, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +46,11 @@ export class RoomsService {
     //   rating: 2.6,
     // },
   ];
+
+  header = new HttpHeaders({'token': 'bigheadmode' })
+  getrooms$ = this.http.get<RoomList[]>('/api/rooms', {headers: this.header}).pipe(
+    shareReplay(1)
+  )
 
   getrooms(){
     return this.http.get<RoomList[]>('/api/rooms')

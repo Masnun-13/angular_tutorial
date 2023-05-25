@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, SkipSelf, Component, Input, Output, ViewChild, ViewChildren, QueryList, DoCheck, AfterViewInit } from '@angular/core';
+import { ChangeDetectionStrategy, OnDestroy, SkipSelf, Component, Input, Output, ViewChild, ViewChildren, QueryList, DoCheck, AfterViewInit } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
@@ -6,7 +6,8 @@ import { RoomsService } from './services/rooms.service';
 import { AppConfig } from '../AppConfig/appconfig.interface';
 import { APP_CONFIG } from '../AppConfig/appconfig.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, Subject, catchError, of, map } from 'rxjs';
+
 
 @Component({
   selector: 'hinv-rooms',
@@ -104,8 +105,30 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
 
   totalBytes=0
 
+
+  error$ = new Subject<string>
+
+  subscription !: Subscription
+
+  getError$ = this.error$.asObservable
+
+  room$ = this.roomService.getrooms$.pipe(
+    catchError((err) => {
+      console.log(err)
+      this.error$.next(err.message)
+      return of([])
+    })
+  )
+
+  roomCount$ = this.roomService.getrooms$.pipe(
+    map((rooms) => rooms.length)
+  )
+
+
+
   ngOnInit(): void {
-    this.roomService.getrooms().subscribe(rooms => {
+
+    this.subscription = this.roomService.getrooms$.subscribe(rooms => {
       this.roomList=rooms
     })
     console.log(this.roomService.getrooms())
@@ -150,6 +173,12 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
       console.log(this.headerComponent)
       this.headerComponent.title="Rooms View"
       this.headerChildrenComponent.last.title = "Last Title"
+  }
+
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
   }
 
 }
