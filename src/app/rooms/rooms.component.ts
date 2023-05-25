@@ -6,6 +6,7 @@ import { RoomsService } from './services/rooms.service';
 import { AppConfig } from '../AppConfig/appconfig.interface';
 import { APP_CONFIG } from '../AppConfig/appconfig.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'hinv-rooms',
@@ -32,6 +33,15 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>
 
   roomList: RoomList[] = []
+
+  stream = new Observable(observer =>
+    {
+      observer.next("user1");
+      observer.next("user2");
+      observer.next("user3");
+      observer.complete()
+      observer.error("err")
+    })
 
   title = "Room List"
 
@@ -75,6 +85,12 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
       this.roomList=rooms
     })
     console.log(this.roomService.getrooms())
+    this.stream.subscribe({
+      next: data => console.log(data),
+      complete: () => console.log("complete"),
+      error : (err) => console.log(err)
+
+    })
   }
 
   ngDoCheck(): void {
