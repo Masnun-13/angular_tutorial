@@ -4,10 +4,6 @@ import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
 import { InitService } from './init.service';
 
-function initFactory(initService : InitService){
-  return() => initService.init()
-}
-
 @Component({
   selector: 'hinv-root',
   templateUrl: './app.component.html',
@@ -23,7 +19,12 @@ export class AppComponent implements AfterViewInit, OnInit{
   @ViewChild( "name", {static : true} ) name!: ElementRef
 
   constructor(@Optional() private loggerService : LoggerService,
-  @Inject(localStorageToken) private localstorage : Storage){}
+  @Inject(localStorageToken) private localstorage : Storage,
+  private initService : InitService){
+    console.log(initService.config)
+  }
+
+
 
   ngOnInit(): void {
     this.name.nativeElement.innerText="Hilton Hotel"
