@@ -2,6 +2,11 @@ import { Component, ViewChild, Inject, ViewContainerRef, OnInit, AfterViewInit, 
 import { RoomsComponent } from './rooms/rooms.component';
 import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
+import { InitService } from './init.service';
+
+function initFactory(initService : InitService){
+  return() => initService.init()
+}
 
 @Component({
   selector: 'hinv-root',
