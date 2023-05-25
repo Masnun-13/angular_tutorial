@@ -20,7 +20,8 @@ export class AppComponent implements AfterViewInit, OnInit{
 
   constructor(@Optional() private loggerService : LoggerService,
   @Inject(localStorageToken) private localstorage : Storage,
-  private initService : InitService){
+  private initService : InitService)
+  {
     console.log(initService.config)
   }
 
