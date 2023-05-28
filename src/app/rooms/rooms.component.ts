@@ -92,6 +92,11 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
 
   }
 
+  deleteroom(){
+    this.roomService.deleteroom('3').subscribe(data=>
+      this.roomList=data)
+  }
+
   constructor(@SkipSelf() private roomService : RoomsService){
 
   }
