@@ -66,4 +66,14 @@ export class RoomsService {
     return this.http.put<RoomList[]>(`/api/rooms/${room.roomNumber}`, room)
 
   }
+
+  // deleteroom(id: string){
+  //   return this.http.put<RoomList[]>(`/api/rooms/${room.roomNumber}`, room)
+
+  // }
+
+  // deleteroom(){
+  //   this.roomService.deleteroom('3').subscribe(data=>
+  //     this.roomList=data)
+  // }
 }
