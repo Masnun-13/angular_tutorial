@@ -22,9 +22,9 @@
     <td>{{room.rating | number : "1.1-3" : "en-us"}}</td>
     <td>
       <button class="btn btn-primary"
-        (click)="selectRoom(room)"
+        [routerLink]="['/rooms', room.roomNumber]"
       >
-        Select</button>
+        Book Room</button>
     </td>
   </tr>
 </table>
