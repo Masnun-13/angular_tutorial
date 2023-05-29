@@ -94,7 +94,8 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
   }
 
   deleteroom(){
-    this.roomService.deleteroom('3').subscribe(data=>
+    const x = ""+prompt("enter room number of room to delete")
+    this.roomService.deleteroom(x).subscribe(data=>
       this.roomList=data)
   }
 
