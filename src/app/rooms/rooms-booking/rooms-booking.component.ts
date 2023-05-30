@@ -19,6 +19,7 @@ export class RoomsBookingComponent implements OnInit{
 
   ngOnInit(): void {
     // this.router.params.subscribe((params) => { console.log(params); this.id=params['roomid']; })
+    console.log("sans undertale  ", this.id$)
 
   }
 

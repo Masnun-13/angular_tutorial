@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path: 'employee', component: EmployeeComponent},
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: 'employee', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', component: NotfoundComponent},
 
 ];

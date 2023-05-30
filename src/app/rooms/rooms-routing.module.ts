@@ -7,9 +7,14 @@ import { RoomsListComponent } from './rooms-list/rooms-list.component';
 
 
 const routes: Routes = [
-  {path: 'rooms', component: RoomsComponent},
-  {path: 'rooms/add', component: RoomsAddComponent},
-  {path: 'rooms/:roomid', component: RoomsBookingComponent}
+  {path: '',
+  component: RoomsComponent,
+  children: [
+    {path: 'add', component: RoomsAddComponent},
+    {path: ':roomid', component: RoomsBookingComponent},
+  ]
+  },
+
 ];
 
 @NgModule({
