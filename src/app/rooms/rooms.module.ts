@@ -6,15 +6,26 @@ import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
 import { RoomsAddComponent } from './rooms-add/rooms-add.component';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { RoomsComponent } from './rooms.component';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
+import { HeaderModule } from '../header/header.module';
+
 
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RoomsBookingComponent,
+    RoomsAddComponent,
+    RoomsComponent,
+    RoomsListComponent,
+  ],
   imports: [
     CommonModule,
     RoomsRoutingModule,
+    FormsModule,
+    HeaderModule,
   ]
 })
 export class RoomsModule { }

@@ -10,10 +10,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path: 'employee', component: EmployeeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'rooms', component: RoomsComponent},
-  {path: 'rooms/add', component: RoomsAddComponent},
-  {path: 'rooms/:roomid', component: RoomsBookingComponent},
-  {path: '', redirectTo: '/rooms', pathMatch: 'full'},
+  {path: '', redirectTo: 'employee', pathMatch: 'full'},
   {path: '**', component: NotfoundComponent},
 
 ];
