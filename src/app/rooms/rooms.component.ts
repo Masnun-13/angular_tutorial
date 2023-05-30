@@ -7,6 +7,7 @@ import { AppConfig } from '../AppConfig/appconfig.interface';
 import { APP_CONFIG } from '../AppConfig/appconfig.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Observable, Subscription, Subject, catchError, of, map } from 'rxjs';
+import { ConfigService } from '../services/config.service';
 
 
 @Component({
@@ -99,7 +100,8 @@ export class RoomsComponent implements OnInit ,DoCheck, AfterViewInit{
       this.roomList=data)
   }
 
-  constructor(@SkipSelf() private roomService : RoomsService){
+  constructor(@SkipSelf() private roomService : RoomsService,
+  private configservice : ConfigService){
 
   }
 
