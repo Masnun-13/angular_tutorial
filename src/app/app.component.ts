@@ -3,6 +3,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
 import { InitService } from './init.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hinv-root',
@@ -20,7 +21,8 @@ export class AppComponent implements AfterViewInit, OnInit{
 
   constructor(@Optional() private loggerService : LoggerService,
   @Inject(localStorageToken) private localstorage : Storage,
-  private initService : InitService)
+  private initService : InitService,
+  private router : Router)
   {
     console.log(initService.config)
   }
@@ -28,6 +30,9 @@ export class AppComponent implements AfterViewInit, OnInit{
 
 
   ngOnInit(): void {
+    this.router.events.subscribe((event)=> {
+      console.log(event)
+    })
     this.name.nativeElement.innerText="Hilton Hotel"
     this.loggerService?.Log('AppComponent.ngOnInit()')
     this.localstorage.setItem('name', "Hilton Hotel")
