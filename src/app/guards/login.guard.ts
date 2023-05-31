@@ -4,7 +4,9 @@ import { LoginComponent } from '../login/login.component';
 import { inject } from '@angular/core';
 
 export const loginGuard: CanActivateFn = (route, state) => {
-
-  alert('guarded by LoginGuard')
-  return inject(LoginService).logged
+  let x = inject(LoginService).logged
+  if(!x){
+    alert('Not logged in as admin, guarded by LoginGuard')
+  }
+  return x
 };
