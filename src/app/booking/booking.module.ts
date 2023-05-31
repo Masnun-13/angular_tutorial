@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingComponent } from './booking.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatInput, MatInputModule} from '@angular/material/input'
 
 
 @NgModule({
@@ -11,7 +14,10 @@ import { BookingComponent } from './booking.component';
   ],
   imports: [
     CommonModule,
-    BookingRoutingModule
+    BookingRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class BookingModule { }
