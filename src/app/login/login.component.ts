@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../guards/login.service';
 
 @Component({
   selector: 'hinv-login',
@@ -8,15 +9,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private route: Router){}
+  constructor(private route: Router, private loginservice: LoginService){}
 
   email: string = ""
   password : string = ""
 
   login(){
-    if(this.email=="admin@gmail.com" && this.password=="Admin"){
+    if(this.loginservice.login(this.email, this.password)){
       alert("Login successful")
-      this.route.navigateByUrl("/rooms/add")
+      this.route.navigateByUrl("/employee")
+    }
+    else{
+      alert("Login failed")
     }
   }
 
