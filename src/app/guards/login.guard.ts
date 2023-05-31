@@ -6,7 +6,7 @@ import { inject } from '@angular/core';
 export const loginGuard: CanActivateFn = (route, state) => {
   let x = inject(LoginService).logged
   if(!x){
-    alert('Not logged in as admin, guarded by LoginGuard')
+    alert('Not logged in, guarded by LoginGuard')
   }
   return x
 };

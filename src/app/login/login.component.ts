@@ -16,11 +16,14 @@ export class LoginComponent {
 
   login(){
     if(this.loginservice.login(this.email, this.password)){
-      alert("Login successful")
+      if(this.loginservice.isAdmin)
+      {
+        alert("Login successful as admin")
+      }
+      else{
+        alert("Login successful")
+      }
       this.route.navigateByUrl("/employee")
-    }
-    else{
-      alert("Login failed")
     }
   }
 
